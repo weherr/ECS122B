@@ -1,0 +1,115 @@
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+%\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{pdfpages}
+\usepackage{url}
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{ 
+\normalfont \normalsize 
+\textsc{Dept. of Computer Science, UC Davis. ECS122b \today\\ William Herr \hfill } % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Program \#2 Report \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{} % Put your name here
+
+\date{}
+
+\begin{document}
+
+\maketitle % Print the title
+\vspace{-1.3in}
+
+
+\section{Introduction}
+For my final program I implemented two different brute force solutions to the knapsack problem. The knapsack problem is an issue of given a set of items, each with a weight and value, what is the most value one can one get within a certain weight limit. The first way I attempted to solve this was by using N-tuple enumeration. N-tuple enumeration can solve the knapsack problem with two arrays, "A" to tell you how many of each item you want to take and "B" to tell you the max number of items your allowed to take. This brute force method increments array "A" and then counts to see the current value of the items of "A", if this is the most valuable thing so far you store it. After going through all possible combinations your final stored value will be the greatest possible. The second method Subset enumeration is similar in that it uses 2 arrays, however for all items we are only allowed to take one and we treat multiple instances of the same item as completely different. Now one of the most fundemental parts to these approachs is how you increment your array (iterating through all possible combinations). This is done with a function called AddOneMixedRadix(Array A, Array B) whose pseudo-code I have outlined bellow. Another important part to these methods is determining if a subset has the largest total value and is under the weight limit. The pseudo-code for this is also below under the function name CheckValue(Array items, Array weights, Array values, int maxweight, int curMostValue, Array L). Array L in this case is the items with the most value so you know which ones to pick at the end. It is not enough knowing the most value, you also need to know the items that sum to that value.
+
+
+. \newline
+. \newline
+\begin{AddOne}
+AddOneMixedRadix(Array A, Array B):
+    \item for x to A.size()
+    \item A[x] = A[x] + 1
+    \item if(A[x] == B[x]) A[x] = 0
+    \item else: return
+\end{AddOne}
+. \newline
+. \newline
+\begin{CheckValue}
+    \item CheckValue(Array A, Array weights, Array values, int maxweight, int curMostValue, Array L):
+    \item int TotalValue, TotalWeight;
+    \item for x to A.size() // array A is the subset were checking
+    \item TotalValue += values[x]
+    \item TotalWeight += weights[x]
+    \item endfor
+    \item if(TotalValue > curMostValue && TotalWeight < maxweight) 
+    \item curMostValue = TotalValue; L = A;
+\end{CheckValue}
+
+
+\section{Empirical Studies}
+
+
+In order to collect data on my programs I ran a series of time tests to check the difference in preformance between the two methods. In order to get the times I basically wrote a bash script that ran one task 50 times and I timed how long it took to run the bash script. I also ran all combinations of each method 50 times in one big test run. Every subset combination ran in 0m3.331s while every N-Tuple ran in 0m3.145s. I think these numbers are important because it shows that both methods work at around the same speed. However, there is one problem with this test, it does not take into account the random assignment of copies. It would be an interesting thing to see how they compare when every item is forced to have x number of copies. Lastly I ran a version where it tested three through five items all with at most 4 copies each fifty times. The reason I did this test was to see the difference in how the randomness affects overall time. Because a random number is assigned as the copy number one version of the same program could be dealing with more items, meaning more subsets. Included in this folder are all the tests in a file called realtimes.txt. I also added 2 scatter plots the first demonstrating the problem with randomly assigned copies through increasing the number of allowed copies for a 5 item Subset enumeration. The second scatter plot shows that by increasing the number of items we also increase the time it takes to complete the task. This is shown by using N-Tuple enumeration increasing the items but guaranteeing only one copy.
+
+\section{Conclusions}
+In conclusion both N-Tuple enumeration and Subset enumeration run in about the same time as each other. If you look down the times they are all around the same time, it seems one is not better than the other. Although, N-Tuple enumeration was quicker at running all combinations. Personally, I find that N-tuple enumeration makes more sense in that at the end you dont have to peice back togeather to find out how many copies of an object you took.
+However, there was one problem with this project that I believe may have altered the data. That is the random number of copies assigned to a given item. It seems like we can not be certain how many items each iteration was dealing with despite them running 50 times to offset this. This issue is visible in running either method with four allowed copies multiple times. While the numbers are relatively close togeather, this is most likly because we run each fifty times, the randomness effects the time.
+\section{Citations}
+
+\begin{thebibliography}{9}
+
+% To reference this citation, use \cite{lamport94} in your text.
+\bibitem{stackoverflow}
+    stackoverflow,
+    \url{http://stackoverflow.com/questions//c-fastest-method-to-check-if-all-array-elements-are-equal},
+    Accessed Jun/6/2016 at 4:30pm PST.
+  
+\bibitem{stackoverflow}
+    stackoverflow,
+    \url{http://stackoverflow.com/questions/3683434/custom-format-for-time-command},
+    Accessed Jun/6/2016 at 4:31pm PST.
+    
+\bibitem{plot.ly}
+    plot.ly,
+    \url{https://plot.ly/plot#},
+    Accessed Jun/6/2016 at 4:32pm PST.
+    
+    
+
+
+\end{thebibliography}
+
+\end{document}
+
+

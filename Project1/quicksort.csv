@@ -1,0 +1,41 @@
+Sample Number   Language        Time       # of Partitioning Stages   # of Exchanges   # of Comapres
+1               C++        real	0m0.009s             7                    7               41
+                           user	0m0.000s  
+                           sys	0m0.002s   
+
+2               C++        real	0m0.005s             7                    7               42
+                           user	0m0.000s  
+                           sys	0m0.001s   
+
+3               C++        real	0m0.005s             7                    9               50
+                           user	0m0.001s  
+                           sys	0m0.000s   
+
+4               C++        real	0m0.005s             8                    9               44
+                           user	0m0.001s  
+                           sys	0m0.000s   
+
+5               C++        real	0m0.005s             6                    12               44
+                           user	0m0.001s  
+                           sys	0m0.000s   
+
+6               C++        real	0m0.005s             6                    11               39
+                           user	0m0.001s  
+                           sys	0m0.000s   
+
+7               C++        real	0m0.005s             8                    9               47
+                           user	0m0.000s  
+                           sys	0m0.001s   
+
+8               C++        real	0m0.005s             8                    11               51
+                           user	0m0.001s  
+                           sys	0m0.000s   
+
+9               C++        real	0m0.005s             8                    10               44
+                           user	0m0.001s  
+                           sys	0m0.000s   
+
+10               C++        real	0m0.005s             7                    9               42
+                           user	0m0.000s  
+                           sys	0m0.001s   
+

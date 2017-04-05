@@ -1,0 +1,41 @@
+Sample Number   Language        Time       # of Recursive Calls  # of Exchanges   # of Comapres
+1               C++        real	0m0.002s                    19                  12               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
+2               C++        real	0m0.002s                    19                  11               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
+3               C++        real	0m0.002s                    19                  15               92
+                           user	0m0.001s  
+                           sys	0m0.000s   
+
+4               C++        real	0m0.002s                    19                  11               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
+5               C++        real	0m0.002s                    19                  12               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
+6               C++        real	0m0.002s                    19                  13               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
+7               C++        real	0m0.002s                    19                  12               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
+8               C++        real	0m0.002s                    19                  13               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
+9               C++        real	0m0.003s                    19                  13               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
+10               C++        real	0m0.002s                    19                  12               92
+                           user	0m0.000s  
+                           sys	0m0.000s   
+
